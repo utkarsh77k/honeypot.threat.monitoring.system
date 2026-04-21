@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Honeypot SOC Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+<h1 class="glow"> HONEYPOT CYBER DEFENSE SYSTEM</h1>
+
+<!-- 📊 Stats -->
+<div class="stats">
+    <div class="card">Total Attacks: <span id="total"></span></div>
+    <div class="card">High Risk: <span id="high"></span></div>
+</div>
+
+<!-- 📊 Chart -->
+<div class="chart-box">
+    <canvas id="riskChart"></canvas>
+</div>
+
+<!-- 🌍 Map -->
+<h2>Attack Map</h2>
+<div id="map"></div>
+
+<!-- 📋 Table -->
+<table id="attackTable">
+    <tr>
+        <th>IP</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Org</th>
+        <th>Risk</th>
+        <th>Threat</th>
+        <th>Commands</th>
+    </tr>
+</table>
+
+<!-- 📜 Timeline -->
+<h2> Attack Timeline</h2>
+<ul id="timeline"></ul>
+
+<script src="script.js"></script>
+
+</body>
+</html>
