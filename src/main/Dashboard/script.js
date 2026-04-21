@@ -12,7 +12,7 @@ fetch("logs/attacks.json")
     document.getElementById("high").innerText =
         data.filter(a => a.threatLevel === "HIGH").length;
 
-    // 🌍 MAP INIT
+    // MAP INIT
     let map = L.map('map').setView([20, 0], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -22,7 +22,7 @@ fetch("logs/attacks.json")
     // LOOP DATA
     data.forEach(attack => {
 
-        // 📋 TABLE
+        // TABLE
         let row = table.insertRow();
 
         row.insertCell(0).innerText = attack.ip;
@@ -38,7 +38,7 @@ fetch("logs/attacks.json")
 
         row.insertCell(6).innerText = attack.commands.join(", ");
 
-        // 🎨 Risk colors
+        //  Risk colors
         if (attack.threatLevel === "HIGH") {
             riskCell.className = "high";
             riskStats.high++;
@@ -50,12 +50,12 @@ fetch("logs/attacks.json")
             riskStats.low++;
         }
 
-        // 📜 Timeline
+        // Timeline
         let li = document.createElement("li");
         li.innerText = `${attack.timestamp} → ${attack.ip} (${attack.attackType})`;
         timeline.appendChild(li);
 
-        // 🌍 Map markers (with fallback)
+        //  Map markers (with fallback)
         if (!attack.lat || attack.lat === 0) {
             attack.lat = 28.6139;
             attack.lon = 77.2090;
@@ -76,7 +76,7 @@ fetch("logs/attacks.json")
         );
     });
 
-    // 📊 Chart
+    //  Chart
     new Chart(document.getElementById("riskChart"), {
         type: 'bar',
         data: {

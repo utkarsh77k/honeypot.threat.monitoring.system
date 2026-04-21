@@ -19,7 +19,7 @@ public class AttackRecord {
     public String city;
     public String org;
 
-    // 🌍 NEW
+    //  NEW
     public double lat;
     public double lon;
 

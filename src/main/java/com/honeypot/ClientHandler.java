@@ -37,7 +37,7 @@ public class ClientHandler implements Runnable {
             out.println("Last login: Mon Apr 13 from 192.168.1.5");
             out.println("Welcome to Secure Server");
 
-            // 🔐 INPUT (CLEANED)
+            //  INPUT (CLEANED)
             out.print("Username: ");
             out.flush();
             String username = cleanInput(in.readLine());
@@ -50,7 +50,7 @@ public class ClientHandler implements Runnable {
 
             out.println("Access Granted...\n");
 
-            // 💻 COMMAND LOOP
+            //  COMMAND LOOP
             while (true) {
                 out.print("root@server:~$ ");
                 out.flush();
@@ -73,15 +73,15 @@ public class ClientHandler implements Runnable {
 
             session.endSession();
 
-            // 🧠 DETECTION
+            // DETECTION
             int risk = DetectionEngine.calculateRisk(session.getCommands(), 1);
             String type = DetectionEngine.classify(session.getCommands());
 
-            // 📊 THREAT INTEL
+            // HREAT INTEL
             ThreatIntelEngine.updateThreatProfile(ip, password, session.getCommands());
             String threatLevel = ThreatIntelEngine.getThreatLevel(ip);
 
-            // 🌍 GEO-IP
+            // GEO-IP
             JsonNode geo = GeoIPService.getIPDetails(ip);
 
             String country = "Unknown";
@@ -99,7 +99,7 @@ public class ClientHandler implements Runnable {
                 lon = geo.has("lon") ? geo.get("lon").asDouble() : 0;
             }
 
-            // 📦 CREATE RECORD
+            // CREATE RECORD
             AttackRecord record = new AttackRecord(
                     ip,
                     username,
@@ -117,10 +117,10 @@ public class ClientHandler implements Runnable {
             record.lat = lat;
             record.lon = lon;
 
-            // 📝 LOG
+            //log
             AttackLogger.log(record);
 
-            // 🔥 CLEAN TERMINAL LOG
+            // cl
             System.out.println(
                     "[ATTACK] IP=" + ip +
                             " | Risk=" + risk +
@@ -135,7 +135,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    // 🧠 CLEAN INPUT (VERY IMPORTANT)
+    // CLEAN INPUT
     private String cleanInput(String input) {
         if (input == null)
             return "";
